@@ -57,6 +57,15 @@
 ## Outline
 
 ---
+## Randomised algorithms
++ **Vegas**-style: always **correct**, fast on **average**
+  + But still slow in **worst-case**
++ **Monte Carlo**: always **fast**
+  + But not always **correct**!
+  + **Approximate**: margin of error &epsilon;, shrinks with more iterations
+  + **Stochastic**: bound on the **probability** of being correct
+
+---
 ## QuickSort
 
 ---
@@ -70,6 +79,9 @@
 
 ---
 ## QuickSort with constant splits
+
+---
+## QuickSort with median split
 
 ---
 ## Outline
@@ -90,4 +102,7 @@
 ## Outline
 
 ---
-## Randomised matrix multiply
+## Randomised mat-mul check
++ **Check** if n x n matrices A \* B = C
+  + in \`Theta(n^2)\` time
++ 
