@@ -1,10 +1,24 @@
-<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-e6XsI7qqvAA-forest_sunbeam.jpg" -->
+<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
 # CMPT231
 ## Lecture 3: ch5-6
 ### Heaps, Queues, and Quicksort
 
 ---
+<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
+##
+
+---
+<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
 ## Outline for today
++ **Heap** sort *(ch5)*
+  + Intro to **trees** (more in *ch12*)
+  + Binary heaps and **max-heaps**
+  + **Heap** sort
+  + Max-heaps for **priority queue**
++ **Quicksort** *(ch6)*
+  + Lomuto **partitioning** and **complexity** analysis
+  + **Randomised** Quicksort and analysis
++ Monte-Carlo **matrix multiply** checking
 
 ---
 ## Summary of sorting algorithms
@@ -36,6 +50,19 @@
 
 >>>
 TODO: diagram, split in 2col?
+
+---
+<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
+## Outline for today
++ Heap sort *(ch5)*
+  + Intro to trees (more in *ch12*)
+  + **Binary heaps and max-heaps**
+  + **Heap sort**
+  + Max-heaps for priority queue
++ Quicksort *(ch6)*
+  + Lomuto partitioning and complexity analysis
+  + Randomised Quicksort and analysis
++ Monte-Carlo matrix multiply checking
 
 ---
 ## Binary heaps
@@ -126,7 +153,17 @@ for i = floor( length(A)/2 ) to 1:
 + **Try** it: `[ 5, 2, 7, 4, 8, 1 ]`
 
 ---
-## Outline
+<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
+## Outline for today
++ Heap sort *(ch5)*
+  + Intro to trees (more in *ch12*)
+  + Binary heaps and max-heaps
+  + Heap sort
+  + **Max-heaps for priority queue**
++ Quicksort *(ch6)*
+  + Lomuto partitioning and complexity analysis
+  + Randomised Quicksort and analysis
++ Monte-Carlo matrix multiply checking
 
 ---
 ## Priority queue
@@ -166,7 +203,17 @@ for i = floor( length(A)/2 ) to 1:
 + **Insert** new item: *&Theta;(lg n)*
 
 ---
-## Outline
+<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
+## Outline for today
++ Heap sort *(ch5)*
+  + Intro to trees (more in *ch12*)
+  + Binary heaps and max-heaps
+  + Heap sort
+  + Max-heaps for priority queue
++ **Quicksort** *(ch6)*
+  + **Lomuto partitioning and complexity analysis**
+  + Randomised Quicksort and analysis
++ Monte-Carlo matrix multiply checking
 
 ---
 ## Randomised algorithms
@@ -264,7 +311,17 @@ TODO: figure
   + Benchmarks **slower** than *merge sort*
 
 ---
-## Outline
+<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
+## Outline for today
++ Heap sort *(ch5)*
+  + Intro to trees (more in *ch12*)
+  + Binary heaps and max-heaps
+  + Heap sort
+  + Max-heaps for priority queue
++ Quicksort *(ch6)*
+  + Lomuto partitioning and complexity analysis
+  + **Randomised Quicksort and analysis**
++ Monte-Carlo matrix multiply checking
 
 ---
 ## Randomised Quicksort
@@ -317,7 +374,17 @@ def rand_partition( A, lo, hi ):
 ## Visualisations of sorting
 
 ---
-## Outline
+<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
+## Outline for today
++ Heap sort *(ch5)*
+  + Intro to trees (more in *ch12*)
+  + Binary heaps and max-heaps
+  + Heap sort
+  + Max-heaps for priority queue
++ Quicksort *(ch6)*
+  + Lomuto partitioning and complexity analysis
+  + Randomised Quicksort and analysis
++ **Monte-Carlo matrix multiply checking**
 
 ---
 ## Randomised mat-mul check
