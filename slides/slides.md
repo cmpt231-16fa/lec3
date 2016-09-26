@@ -55,7 +55,7 @@ TODO: diagram, split in 2col?
 ## max_heapify() on single node
 + **Input**: binary heap *A* and node index *i*
   + **Precondition**: left and right sub-trees of *i*
-    each satisfy the *max-heap property*
+    are each separate *max-heaps*
 + **Postcondition**: entire subtree at *i* is a *max-heap*
 + Algorithm:
   1. Find **largest** of: *i*, **left** child of *i*,
@@ -104,7 +104,7 @@ for i = floor( length(A)/2 ) to 1:
   + **Num of nodes** with height *h* is \`<= |~ n/2^(h+1) ~| \`
     + Reaches that bound when tree is **full**
 + Total **running time** *T(n)*:
-  \` T(n) = sum\_(h=0)^(text(lg)n) \`
+  \` T(n) = sum\_(h=0)^(text(lg)n) (n/2^(h+1))O(h) \`
   \` <= n sum\_(h=0)^oo (1/2^(h+1))O(h) \`
   \` = n sum\_(h=1)^oo (1/2^h)O(h) \`
   \` = O(n) \`
@@ -297,21 +297,20 @@ def rand_partition( A, lo, hi ):
 ---
 ## R-Quicksort: pair comparison
 + A pair \`(z\_i, z\_j)\` is **compared** only if:
-  + Either \`z\_i\` or \`z\_j\` is chosen as a *pivot*
-    **before** any other item *in-between* them:
+  + Either \`z\_i\` or \`z\_j\` is chosen as a *pivot* <br/>
+    **before** any other item ordered *in-between* them: <br/>
     \`{z\_i, z\_(i+1), ..., z\_(j-1), z\_j}\`
 + Otherwise \`z_i\` and \`z_j\` would be on **opposite** sides of
   a split, and would **never** be compared
-+ **Probability** of this happening is \` 2( 1 / (j-i+1) ) \`
++ **Probability** of this happening: \` 2( 1 / (j-i+1) ) \`
 
 ---
 ## R-Quicksort: total comparisons
-**Sum** over all possible pairs \`(z\_i, z\_j)\`: <br/>
-\` sum\_(i=1)^(n-1) sum\_(j=i+1)^n P(text(compare) z\_i text(with) z\_j) \` <br/>
-\` = sum\_(i=1)^(n-1) sum\_(j=i+1)^n 2/(j-i+1) \` <br/>
-\` = sum\_(i=1)^(n-1) sum\_(k=1)^(n-i) 2/(k+1) \` (let *k=j-i*) <br/>
+**Sum** over all pairs \`(z\_i, z\_j)\`: <br/>
+\` sum\_(i=1)^(n-1) sum\_(j=i+1)^n 2/(j-i+1) \` <br/>
+\` = sum\_(i=1)^(n-1) sum\_(k=1)^(n-i) 2/(k+1) \` *(let k=j-i*) <br/>
 \` < sum\_(i=1)^(n-1) sum\_(k=1)^n 2/k \` <br/>
-\` = sum\_(i=1)^(n-1) O(text(lg) n) \` (e.g., Riemann sums) <br/>
+\` = sum\_(i=1)^(n-1) O(ln n) \` *(harmonic series)* <br/>
 \` = O(n text(lg) n) \`
 
 ---
