@@ -389,32 +389,30 @@ def rand_partition( A, lo, hi ):
 ---
 ## Randomised mat-mul check
 + Recall **matrix multiply**: naive \`Theta(n^3)\`, Strassen \`Theta(n^2.81)\`
-  + Best-known alg: Coppersmith-Winograd, \`Theta(n^2.376)\`
+  + Best-known: Coppersmith-Winograd, \`Theta(n^2.376)\`
 + What if we have 3 *n* x *n* matrices *A*, *B*, *C*:
-  + Can we **check** if *A \* B = C* faster than doing the multiply?
-+ [**Frievald**'s matrix-multiply checker](https://en.wikipedia.org/wiki/Freivalds%27_algorithm):
-  + Runs in \`Theta(n^2)\`
-  + If *A \* B = C*, returns True all the time (0 *false-negative* rate)
-  + If *A \* B &ne; C*, returns False &gt; 50% of the time
-    (*false-positive* rate &lt; 0.50)
+  + **Check** if *A &lowast; B = C* faster than full multiply?
++ **Frievald**'s [matrix-multiply checker](https://en.wikipedia.org/wiki/Freivalds%27_algorithm) in \`Theta(n^2)\`:
+  + If *A &lowast; B = C*, always returns True (0% *false-negatives*)
+  + If *A &lowast; B &ne; C*, returns False &gt; 50% of the time
 + If returns *False*, run it *k* times:
   + *False-positive* rate &lt; \`2^(-k)\`, in time \`O(kn^2)\`
 
 ---
 ## Frievald's algorithm
-+ Make a random **boolean** vector \`r = {r_i}_1^n\`:
-  + \`P(r_i == 1) = 0.5\` for all *i*, independently
++ Make a random **boolean** vector \`vec r = {r_i}_1^n\`:
+  + \`P(r_i = 1)\` = *0.5* for all *i*, independently
   + i.e., flip a fair coin *n* times
-+ **Return value**: check if *A \* (B\*r) == C\*r*
-  + Each **multiply** is only a (*n* x *n*) matrix by a (*n* x 1) vector
++ **Return value**: check if \`A \* (B \* vec r) = C \* vec r\`
+  + Each **multiply** is only a (*n* x *n*) matrix by a (*n* x *1*) vector
   + &rArr; total time still only \`Theta(n^2)\`
 + Example of a **Monte-Carlo** style algorithm
-+ If *A \* B = C*, always returns True
-  + What if *A \* B &ne; C*?  Want *P(ABr &ne; Cr) &gt; 0.50*
++ If *A &lowast; B = C*, this always returns True
++ If *A &lowast; B &ne; C*, want \`P(A \* (B \* vec r) != C \* vec r\`) > 0.50\`
 
 ---
 ## Frievald false-positives
-+ Let *D* = *AB - C*: by assumption, *D* &ne; 0.
-  + Let *(i,j)* be indices of a nonzero element \`D_ij\`.
++ Let *D* = *AB - C*: by assumption, *D* &ne; 0
+  + Let *(i,j)* be indices of a nonzero element \`D_(ij)\`.
   + &rArr; Want to show *P(Dr == 0) &le; 0.50*
 + *Dr* is 0 if all elements are 0, so \`P(Dr = 0) <= P((Dr)_i = 0)\`
