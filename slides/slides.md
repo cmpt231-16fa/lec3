@@ -12,15 +12,13 @@
   + **Insertion** sort:  *&Theta;(n^2)*, easy to program, slow
   + **Merge** sort: *&Theta;(n lg n)*, out-of-place copy (slow)
   + **Heap** sort: *&Theta;(n lg n)*, in-place, max-heap
-  + **Quicksort**: *&Theta;(n^2)* worst-case, *&Theta;(n lg n)* average,
-    fast constant factors
+  + **Quicksort**: *&Theta;(n^2)* worst-case, *&Theta;(n lg n)* average
+    + and small (fast) constant factors
 + **Linear**-time non-comparison sorts *(ch8)*:
   + **Counting** sort: *k* distinct values: *&Theta;(k)*
   + **Radix** sort: *d* digits, *k* values: *&Theta;(d(n+k))*
   + **Bucket** sort: uniform distribution: *&Theta;(n)*
-
->>>
-TODO: which sorts are **stable**
++ A sort is **stable** if preserves **order** of equal items
 
 ---
 ## Binary trees
@@ -45,24 +43,23 @@ TODO: diagram, split in 2col?
   + Put node *i*'s two **children** at *2i* and *2i+1*
   + **Fill** tree left-to-right, one level at a time
   + e.g.: `[ 2, 8, 4, 7, 5, 3, 1, 6 ]`
-+ **Max-heap**: node's value always &le; parent's value
++ The **max-heap** property: every node's value is &le; its parent
   + (*min-heap*: &ge;)
 + `max_heapify()` (*O(lg n)*):
-  move a node *i* to satisfy **max-heap property**
+  + move a node *i* to satisfy **max-heap property**
 + `build_max_heap()` (*O(n)*):
-  turn an unordered array into a max-heap
+  + turn an unordered array into a max-heap
 + `heapsort()` (*O(n lg n)*): in-place **sort**
 
 ---
 ## max_heapify() on single node
 + **Input**: binary heap *A* and node index *i*
   + **Precondition**: left and right sub-trees of *i*
-    satisfy *max-heap property*
-+ **Postcondition**: entire subtree at *i* satisfies
-  *max-heap property*
-+ **Algorithm**:
-  1. Find **largest** of the 3 nodes: *i*, left-child of *i*,
-    or right-child of *i*
+    each satisfy the *max-heap property*
++ **Postcondition**: entire subtree at *i* is a *max-heap*
++ Algorithm:
+  1. Find **largest** of: *i*, **left** child of *i*,
+    or **right** child of *i*
   2. If *i* is **not** the largest, then:
     1. **Swap** *i* with the largest
     2. **Recurse** (or iterate) on that subtree
@@ -71,14 +68,14 @@ TODO: diagram, split in 2col?
 ## max_heapify()
 ```
 def max_heapify( A, i ):
-  largest = i
-  if 2i <= length(A) and A[ 2i ] > A[ largest ]:            # left child
-    largest = 2i
-  else if 2i+1 <= length(A) and A[ 2i+1 ] > A[ largest ]:   # right child
-    largest = 2i+1
-  if largest != i:
-    swap( A[ i ], A[ largest ] )
-    max_heapify( A, largest )
+  max = i
+  if 2i <= length(A) and A[ 2i ] > A[ max ]:            # left
+    max = 2i
+  else if 2i+1 <= length(A) and A[ 2i+1 ] > A[ max ]:   # right
+    max = 2i+1
+  if max != i:
+    swap( A[ i ], A[ max ] )
+    max_heapify( A, max )                               # recurse
 ```
 
 + **Try** it on previous heap at *i=1*
@@ -86,19 +83,19 @@ def max_heapify( A, i ):
 
 ---
 ## Building a max-heap
-+ **Input**: binary heap *A*, in any order
-  + **Postcondition**: *A* has *max-heap property*
-+ **Algorithm**:
++ **Input**: array *A*, in any order
+  + **Postcondition**: *A* is a *max-heap*
++ Algorithm:
   1. **Last half** of array is all **leaves**
-  2. Apply `max_heapify()` in turn to each item in **first half**
-    + In **descending** order, so the **subtrees** are already max-heaps
+  2. Run `max_heapify()` on each item in **first half**
+    + **Descending** order: **subtrees** are already max-heaps
 
 ```
 for i = floor( length(A)/2 ) to 1:
   max_heapify( A, i )
 ```
 
-+ **Try** it: `[ 5, 2, 7, 4, 8, 1 ]`
+**Try** it: `[ 5, 2, 7, 4, 8, 1 ]`
 
 ---
 ## Max-heap: complexity
@@ -107,11 +104,11 @@ for i = floor( length(A)/2 ) to 1:
   + **Num of nodes** with height *h* is \`<= |~ n/2^(h+1) ~| \`
     + Reaches that bound when tree is **full**
 + Total **running time** *T(n)*:
-  \` T(n) = sum_(h=0)^(text(lg)n)
-  \` <= n sum_(h=0)^oo (1/2^(h+1))O(h) \`
-  \` = n sum_(h=1)^oo (1/2^h)O(h) \`
+  \` T(n) = sum\_(h=0)^(text(lg)n)
+  \` <= n sum\_(h=0)^oo (1/2^(h+1))O(h) \`
+  \` = n sum\_(h=1)^oo (1/2^h)O(h) \`
   \` = O(n) \`
-+ &rArr; can *build* a max-heap in **linear** time!
++ &rArr; Can *build* a max-heap in **linear** time!
   + But it's not quite a **sorting** algorithm....
 
 ---
@@ -119,11 +116,11 @@ for i = floor( length(A)/2 ) to 1:
 + **Algorithm**:
   1. Make array a **max-heap**
   2. **Repeat**, working *backwards* from end of array:
-    1. **Swap** *root* with *last leaf* of heap
-    2. **Shrink** heap by 1 and re-apply `max_heapify()`
+    + **Swap** *root* with *last leaf* of heap
+    + **Shrink** heap by 1 and **re-apply** `max_heapify()`
 + **Loop invariant**:
-  + First portion of array is still a **max-heap**
-  + Last portion of array is **sorted** (largest items)
+  + *First* portion of array is still a **max-heap**
+  + *Last* portion of array is **sorted** (largest items)
 + **Complexity**: T(n) = *&Theta;(n lg n)*
   + *&Theta;(n)* calls to `max_heapify()` (*&Theta;(lg n)*)
 + **Try** it: `[ 5, 2, 7, 4, 8, 1 ]`
@@ -146,23 +143,19 @@ for i = floor( length(A)/2 ) to 1:
 
 ---
 ## Insert into queue
-+ `set_pri(A, i, pri)`: start from *i* and **bubble** item up
-  to proper place:
-
-    A[ i ] = pri
-    while i > 1 and A[ i/2 ] < A[ i ]:
-      swap( A[ i/2 ], A[ i ] )
-      i = i/2
-
-+ **Complexity**: num iterations = *&Theta;(lg n)*
-+ `insert(A, pri)`: make **new** node, then set its **priority**:
-
-    A.size++
-    set_pri( A, A.size, pri )
-
-+ For speed, often **pre-allocate** *A* as fixed-length array,
-  and track *size* of queue in separate var
++ `set_pri()`: start at *i* and **bubble** up to proper place:
+      A[ i ] = pri
+      while i > 1 and A[ i/2 ] < A[ i ]:
+        swap( A[ i/2 ], A[ i ] )
+        i = i/2
+  + **Complexity**: num iterations = *&Theta;(lg n)*
++ `insert()`: make **new** node, then set its **priority**:
+      A.size++
+      A[ size ] = item
+      set_pri( A, A.size, pri )
   + **Complexity**: same as `set_pri()`: *&Theta;(lg n)*
++ For speed, often **pre-allocate** *A* as fixed-length array
+  + Track *size* of queue in separate var
 
 ---
 ## Priority queue operations
@@ -183,21 +176,21 @@ for i = floor( length(A)/2 ) to 1:
   + But not always **correct**!
   + **Approximate**: margin of *error* &epsilon;
   + **Stochastic**: *probability* P of being correct
-  + Estimate **improves** with more computation time (iterations)
+  + Estimate improves with more **computation** time (iterations)
 
 ---
 ## Quicksort
 + **Divide**: partition *A[ p .. r ]* such that:
-  \` max( A[p .. q-1] ) <= A[q] <= min( A[q+1 .. r] ) \`
+  + max( *A[ p .. q-1 ]* ) &le; *A[ q ]* &le; min( *A[ q+1 .. r ]* )
   + "*magic sauce*" is in this step
 + **Conquer**: recurse on each part:
-  + `quicksort(A, p, q-1)` and `quicksort(A, q+1, r)`
-+ No **combine** / merge step needed
+  + *quicksort(A, p, q-1)* and *quicksort(A, q+1, r)*
+  + No **combine** / merge step needed
 + **In-place** sort (only uses swaps) (unlike *merge sort*)
 + **Worst** case still \`Theta(n^2)\`, but
   + **Average** case is *&Theta;(n lg n)*, with small *constants*
-+ In practise, Quicksort is one of the **best** sorts
-  + when inputs are **arbitrary** and can only use **comparisons**
++ One of the **best** sorts for **arbitrary** inputs
+  + When we can only use **comparisons**
 
 ---
 ## Partitioning (Lomuto)
@@ -236,9 +229,9 @@ def partition( A, lo, hi ):
 ## Average case complexity
 + **Intuition**: on average, get splits *in-between* best and worst
   + If say, average split is *90%* vs *10%*, then:
-  + T(n) = T( *(9/10)*n ) + T( *(1/10)*n ) + *&Theta;(n)*
+  + T(n) = T( *0.90*n ) + T( *0.10*n ) + *&Theta;(n)*
   + Still results in *O(n lg n)*
-+ If we assume splits **alternate** between best and worst, then:
++ If assume splits **alternate** between best and worst:
   + Only adds *O(n)* work to each of *O(lg n)* levels
   + Still *O(n lg n)*! (But maybe larger constants)
 
@@ -251,11 +244,11 @@ TODO: figure
   0 &lt; *&alpha;* &lt; 1/2
   + &rArr; what is min/max **depth** of leaf in recursion tree?
 + **Min depth**: follow smaller (*&alpha;*) side of each split
-  + How many splits *m* until **leaf** (1 item array)?
+  + How many splits *m* until reach **leaf** (1 item array)?
     \` alpha^m n = 1 => m = -log(n)/log(alpha) \`
 + **Max depth**: same with *1-&alpha;* side:
   + \` -log(n)/log(1-alpha) \`
-+ Both are *&Theta;(lg n)*
++ Both are *&Theta;(log n)*
 + &rArr; with **constant-ratio** splits, complexity still *&Theta;(n lg n)*
 
 ---
@@ -265,10 +258,10 @@ TODO: figure
   + Not same as *average* when distribution is **skewed**
 + **Median** (rank finding) algorithm in *O(n)*: see *ch9*
   + **Partitioning** also takes only *O(n)*, so
-  + Quicksort T(n) = *2T(n/2) + O(n)* = *O(n lg n)*!
-+ But, in practise, it's **extra** work for **marginal**
-  improvement in splits
-  + Benchmarks show **slower** than *merge sort*
+  + **Quicksort** T(n) = *2T(n/2) + O(n)* = *O(n lg n)*!
++ But, in practise:
+  + **extra** work for **marginal** improvement in splits
+  + Benchmarks **slower** than *merge sort*
 
 ---
 ## Outline
@@ -291,16 +284,15 @@ def rand_partition( A, lo, hi ):
 ```
 
 ---
-## R-Quicksort: comparisons
+## R-Quicksort: # of comparisons
 + **Name** items in order: \`{z\_i}\_(i=1)^n\` (assume *distinct*)
-+ Analyse complexity by counting **comparisons**:
-  + **Worst** case: all pairs \`(z_\i, z\_j): Theta(n^2)\`
++ **Worst** case: compare all pairs \`(z_\i, z\_j): Theta(n^2)\`
 + No comparison happens **multiple** times, because
   + Comparisons only done against **pivots**, and
-  + Each pivot is used only **once** and not **revisited**
-+ A pair \`(z\_i, z\_j)\` is compared only if:
-  + Either item is chosen as *pivot* **before** any other item
-    in between them: \`{z_i, z_(i+1), ..., z_(j-1), z_j}\`
+  + Each *pivot* is used only **once** and not **revisited**
++ A pair \`(z\_i, z\_j)\` is **compared** only if:
+  + \`z_i\` or \`z_j\` is *pivot* **before** any other
+    \`{z\_i, z\_(i+1), ..., z\_(j-1), z\_j}\`
   + Otherwise \`z_i\` and \`z_j\` would be on **opposite** sides of
     a split, and would **never** be compared
   + **Probability** of this happening is \` 2( 1 / (j-i+1) ) \`
@@ -308,11 +300,11 @@ def rand_partition( A, lo, hi ):
 ---
 ## R-Quicksort: complexity
 **Sum** over all possible pairs \`(z\_i, z\_j)\`: <br/>
-\` sum_(i=1)^(n-1) sum_(j=i+1)^n P(text(compare) z\_i text(with) z\_j) \`
-\` = sum_(i=1)^(n-1) sum_(j=i+1)^n 2/(j-i+1) \`
-\` = sum_(i=1)^(n-1) sum_(k=1)^(n-i) 2/(k+1) text((let k=j-i)) \`
-\` < sum_(i=1)^(n-1) sum_(k=1)^n 2/k \`
-\` = sum_(i=1)^(n-1) O(text(lg) n) text((e.g., Riemann sums)) \`
+\` sum\_(i=1)^(n-1) sum\_(j=i+1)^n P(text(compare) z\_i text(with) z\_j) \`
+\` = sum\_(i=1)^(n-1) sum\_(j=i+1)^n 2/(j-i+1) \`
+\` = sum\_(i=1)^(n-1) sum\_(k=1)^(n-i) 2/(k+1) text((let k=j-i)) \`
+\` < sum\_(i=1)^(n-1) sum\_(k=1)^n 2/k \`
+\` = sum\_(i=1)^(n-1) O(text(lg) n) text((e.g., Riemann sums)) \`
 \` = O(n text(lg) n) \`
 
 ---
