@@ -388,6 +388,27 @@ def rand_partition( A, lo, hi ):
 
 ---
 ## Randomised mat-mul check
-+ **Check** if n x n matrices A \* B = C
-  + in \`Theta(n^2)\` time
-+
++ Recall **matrix multiply**: naive \`Theta(n^3)\`, Strassen \`Theta(n^2.81)\`
++ What if we have 3 *n* x *n* matrices *A*, *B*, *C*:
+  + Can we **check** if *A \* B = C* faster than doing the multiply?
+  + Not if we want a 100% **correct** algorithm, but
++ **Frievald**'s matrix-multiply checker:
+  + Runs in \`Theta(n^2)\`
+  + If *A \* B = C*, returns True all the time (0 *false-negative* rate)
+  + If *A \* B &ne; C*, returns False &gt; 50% of the time
+    (*false-positive* rate &lt; 0.50)
++ e.g., if returns False, run **multiple** times to increase *specificity*
+
+---
+## Frievald's algorithm
++ Make a random **boolean** vector \`r = {r_i}_1^n\`:
+  + \`P(r_i == 1) = 0.5\` for all *i*, independently
+  + i.e., flip a fair coin *n* times
++ **Return value**: check if *A \* (B\*r) == C\*r*
+  + Each **multiply** is only a (*n* x *n*) matrix by a (*n* x 1) vector
+  + &rArr; total time still only \`Theta(n^2)\`
++ Example of a **Monte-Carlo** style algorithm
++ If *A \* B = C*, always returns True
+  + What if *A \* B &ne; C*?  Want *P(ABr &ne; Cr) &gt; 0.50*
+
+
