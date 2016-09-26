@@ -389,15 +389,16 @@ def rand_partition( A, lo, hi ):
 ---
 ## Randomised mat-mul check
 + Recall **matrix multiply**: naive \`Theta(n^3)\`, Strassen \`Theta(n^2.81)\`
+  + Best-known alg: Coppersmith-Winograd, \`Theta(n^2.376)\`
 + What if we have 3 *n* x *n* matrices *A*, *B*, *C*:
   + Can we **check** if *A \* B = C* faster than doing the multiply?
-  + Not if we want a 100% **correct** algorithm, but
-+ **Frievald**'s matrix-multiply checker:
++ [**Frievald**'s matrix-multiply checker](https://en.wikipedia.org/wiki/Freivalds%27_algorithm):
   + Runs in \`Theta(n^2)\`
   + If *A \* B = C*, returns True all the time (0 *false-negative* rate)
   + If *A \* B &ne; C*, returns False &gt; 50% of the time
     (*false-positive* rate &lt; 0.50)
-+ e.g., if returns False, run **multiple** times to increase *specificity*
++ If returns *False*, run it *k* times:
+  + *False-positive* rate &lt; \`2^(-k)\`, in time \`O(kn^2)\`
 
 ---
 ## Frievald's algorithm
@@ -411,4 +412,9 @@ def rand_partition( A, lo, hi ):
 + If *A \* B = C*, always returns True
   + What if *A \* B &ne; C*?  Want *P(ABr &ne; Cr) &gt; 0.50*
 
-
+---
+## Frievald false-positives
++ Let *D* = *AB - C*: by assumption, *D* &ne; 0.
+  + Let *(i,j)* be indices of a nonzero element \`D_ij\`.
+  + &rArr; Want to show *P(Dr == 0) &le; 0.50*
++ *Dr* is 0 if all elements are 0, so \`P(Dr = 0) <= P((Dr)_i = 0)\`
