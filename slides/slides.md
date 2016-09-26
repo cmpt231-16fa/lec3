@@ -104,7 +104,7 @@ for i = floor( length(A)/2 ) to 1:
   + **Num of nodes** with height *h* is \`<= |~ n/2^(h+1) ~| \`
     + Reaches that bound when tree is **full**
 + Total **running time** *T(n)*:
-  \` T(n) = sum\_(h=0)^(text(lg)n)
+  \` T(n) = sum\_(h=0)^(text(lg)n) \`
   \` <= n sum\_(h=0)^oo (1/2^(h+1))O(h) \`
   \` = n sum\_(h=1)^oo (1/2^h)O(h) \`
   \` = O(n) \`
@@ -291,7 +291,7 @@ def rand_partition( A, lo, hi ):
   + Comparisons only done against **pivots**, and
   + Each *pivot* is used only **once** and not **revisited**
 + A pair \`(z\_i, z\_j)\` is **compared** only if:
-  + \`z_i\` or \`z_j\` is *pivot* **before** any other
+  + \`z\_i\` or \`z\_j\` is *pivot* **before** any other
     \`{z\_i, z\_(i+1), ..., z\_(j-1), z\_j}\`
   + Otherwise \`z_i\` and \`z_j\` would be on **opposite** sides of
     a split, and would **never** be compared
@@ -300,11 +300,11 @@ def rand_partition( A, lo, hi ):
 ---
 ## R-Quicksort: complexity
 **Sum** over all possible pairs \`(z\_i, z\_j)\`: <br/>
-\` sum\_(i=1)^(n-1) sum\_(j=i+1)^n P(text(compare) z\_i text(with) z\_j) \`
-\` = sum\_(i=1)^(n-1) sum\_(j=i+1)^n 2/(j-i+1) \`
-\` = sum\_(i=1)^(n-1) sum\_(k=1)^(n-i) 2/(k+1) text((let k=j-i)) \`
-\` < sum\_(i=1)^(n-1) sum\_(k=1)^n 2/k \`
-\` = sum\_(i=1)^(n-1) O(text(lg) n) text((e.g., Riemann sums)) \`
+\` sum\_(i=1)^(n-1) sum\_(j=i+1)^n P(text(compare) z\_i text(with) z\_j) \` <br/>
+\` = sum\_(i=1)^(n-1) sum\_(j=i+1)^n 2/(j-i+1) \` <br/>
+\` = sum\_(i=1)^(n-1) sum\_(k=1)^(n-i) 2/(k+1) \` (let *k=j-i*) <br/>
+\` < sum\_(i=1)^(n-1) sum\_(k=1)^n 2/k \` <br/>
+\` = sum\_(i=1)^(n-1) O(text(lg) n) \` (e.g., Riemann sums) <br/>
 \` = O(n text(lg) n) \`
 
 ---
