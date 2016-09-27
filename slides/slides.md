@@ -417,3 +417,11 @@ def rand_partition( A, lo, hi ):
   + &rArr; Want to show \`P(D vec r = 0) <= 0.50\`
 + \`D vec r\` is 0 if all its elts are 0, so
   \`P(D vec r = 0) <= P((D vec r)_i = 0)\`
++ This is a **dot product**:
+  \`(D vec r)_i = sum_(k=1)^n d_(ik)r_k = d_(ij)r_j + y\`
++ **Two** possibilities: if *y = 0*:
+  \`P((D vec r)_i = 0) = P(d_(ij)r_j = 0) = P(r_j=0) = 0.5\`
++ If *y ne; 0*, then
+  \`P((D vec r)_i = 0) = P(r_j=1 and d_(ij) = -y) <= P(r_j=1) = 0.5\`
++ In **either** case, \`P((D vec r)_i = 0) <= 0.5\`
+
