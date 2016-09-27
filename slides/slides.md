@@ -403,7 +403,7 @@ def rand_partition( A, lo, hi ):
 + **Frievald**'s [matrix-multiply checker](https://en.wikipedia.org/wiki/Freivalds%27_algorithm) in \`Theta(n^2)\`:
   + If *A &lowast; B = C*, always returns True (0% *false-negatives*)
   + If *A &lowast; B &ne; C*, returns False &gt; 50% of the time
-+ If returns *False*, run it *k* times:
++ If returns *True*, run it *k* times:
   + *False-positive* rate &lt; \`2^(-k)\`, in time \`O(kn^2)\`
 
 ---
