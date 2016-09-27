@@ -422,7 +422,7 @@ def rand_partition( A, lo, hi ):
 + If *A &lowast; B &ne; C*, want \`P(A \* (B \* vec r) != C \* vec r)\` &gt; 0.5
 
 ---
-## Frievald false-positives
+## Frievald: false-positive rate
 + Let *D* = *AB - C*: by assumption, *D* &ne; 0
   + Let *(i,j)* be indices of a **nonzero** element \`d\_(ij)\`.
   + &rArr; Want to **show** \`P(D vec r = 0)\` &le; 0.5
