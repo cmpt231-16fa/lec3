@@ -382,9 +382,6 @@ def rand_partition( A, lo, hi ):
 \` = O(n text(lg) n) \`
 
 ---
-## Visualisations of sorting
-
----
 <!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
 ## Outline for today
 + Heap sort *(ch5)*
