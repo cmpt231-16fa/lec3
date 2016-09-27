@@ -274,7 +274,7 @@ def partition( A, lo, hi ):
 
 ---
 ## Quicksort: complexity
-+ **Worst** case: every partition is **uneven**:
++ **Worst** case: every partition is maximally **uneven**:
   + **Pivot** is either *largest* or *smallest* in subarray
   + T(n) = *T(n-1) + T(0) + &Theta;(n)* = \`Theta(n^2)\`
   + Example **inputs** that do this?
@@ -305,7 +305,7 @@ TODO: figure
   + How many splits *m* until reach **leaf** (1 item array)?
     \` alpha^m n = 1 => m = -log(n)/log(alpha) \`
 + **Max depth**: same with *1-&alpha;* side:
-  + \` -log(n)/log(1-alpha) \`
+  \` -log(n)/log(1-alpha) \`
 + Both are *&Theta;(log n)*
 + &rArr; with **constant-ratio** splits, complexity still *&Theta;(n lg n)*
 
