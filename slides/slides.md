@@ -391,7 +391,7 @@ def rand_partition( A, lo, hi ):
 + Recall **matrix multiply**: naive \`Theta(n^3)\`, Strassen \`Theta(n^2.81)\`
   + Best-known: Coppersmith-Winograd, \`Theta(n^2.376)\`
 + What if we have 3 *n* x *n* matrices *A*, *B*, *C*:
-  + **Check** if *A &lowast; B = C* faster than full multiply?
+  + **Check** if *A &lowast; B = C*, faster than full multiply?
 + **Frievald**'s [matrix-multiply checker](https://en.wikipedia.org/wiki/Freivalds%27_algorithm) in \`Theta(n^2)\`:
   + If *A &lowast; B = C*, always returns True (0% *false-negatives*)
   + If *A &lowast; B &ne; C*, returns False &gt; 50% of the time
@@ -407,21 +407,37 @@ def rand_partition( A, lo, hi ):
   + Each **multiply** is only a (*n* x *n*) matrix by a (*n* x *1*) vector
   + &rArr; total time still only \`Theta(n^2)\`
 + Example of a **Monte-Carlo** style algorithm
-+ If *A &lowast; B = C*, this always returns True
++ If *A &lowast; B = C*, this always returns *True*
 + If *A &lowast; B &ne; C*, want \`P(A \* (B \* vec r) != C \* vec r\`) > 0.50\`
 
 ---
 ## Frievald false-positives
 + Let *D* = *AB - C*: by assumption, *D* &ne; 0
-  + Let *(i,j)* be indices of a **nonzero** element \`D_(ij)\`.
-  + &rArr; Want to show \`P(D vec r = 0) <= 0.50\`
-+ \`D vec r\` is 0 if all its elts are 0, so
-  \`P(D vec r = 0) <= P((D vec r)_i = 0)\`
+  + Let *(i,j)* be indices of a **nonzero** element \`d\_(ij)\`.
+  + &rArr; Want to **show** \`P(D vec r = 0) <= 0.50\`
++ \`D vec r\` is 0 iff all its elts are 0, so
+  \`P(D vec r = 0) <= P((D vec r)\_i = 0)\`
 + This is a **dot product**:
   \`(D vec r)\_i = sum\_(k=1)^n d\_(ik)r\_k = d\_(ij)r\_j + y\`
 + **Two** possibilities: if *y = 0*:
   \`P((D vec r)\_i = 0) = P(d\_(ij)r\_j = 0) = P(r\_j=0) = 0.5\`
 + If *y &ne; 0*, then
   \`P((D vec r)\_i = 0) = P(r\_j=1 and d\_(ij) = -y) <= P(r\_j=1) = 0.5\`
-+ In **either** case, \`P((D vec r)_i = 0) <= 0.5\`
++ In **either** case, \`P((D vec r)\_i = 0) <= 0.5\`
+
+---
+<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
+## Outline for today
++ **Heap** sort *(ch5)*
+  + Intro to **trees** (more in *ch12*)
+  + Binary heaps and **max-heaps**
+  + **Heap** sort
+  + Max-heaps for **priority queue**
++ **Quicksort** *(ch6)*
+  + Lomuto **partitioning** and **complexity** analysis
+  + **Randomised** Quicksort and analysis
++ Monte-Carlo **matrix multiply** checking
+
+---
+<!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" class="empty" -->
 
