@@ -5,7 +5,18 @@
 
 ---
 <!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
-##
+## James 1:19-21 <small>(NASB)</small>
+This you know, my beloved brethren: <br/>
+but everyone must be **quick to hear**, <br/>
+**slow to speak** and **slow to anger**;
+
+for the **anger of man** <br/>
+does not achieve the **righteousness of God**.
+
+Therefore, putting aside all **filthiness** <br/>
+and all that remains of **wickedness**, <br/>
+in **humility** receive the **word implanted**, <br/>
+which is able to **save your souls**.
 
 ---
 <!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
