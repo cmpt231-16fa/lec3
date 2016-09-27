@@ -418,10 +418,10 @@ def rand_partition( A, lo, hi ):
 + \`D vec r\` is 0 if all its elts are 0, so
   \`P(D vec r = 0) <= P((D vec r)_i = 0)\`
 + This is a **dot product**:
-  \`(D vec r)_i = sum_(k=1)^n d_(ik)r_k = d_(ij)r_j + y\`
+  \`(D vec r)\_i = sum\_(k=1)^n d\_(ik)r\_k = d\_(ij)r\_j + y\`
 + **Two** possibilities: if *y = 0*:
-  \`P((D vec r)_i = 0) = P(d_(ij)r_j = 0) = P(r_j=0) = 0.5\`
-+ If *y ne; 0*, then
-  \`P((D vec r)_i = 0) = P(r_j=1 and d_(ij) = -y) <= P(r_j=1) = 0.5\`
+  \`P((D vec r)\_i = 0) = P(d\_(ij)r\_j = 0) = P(r\_j=0) = 0.5\`
++ If *y &ne; 0*, then
+  \`P((D vec r)\_i = 0) = P(r\_j=1 and d\_(ij) = -y) <= P(r\_j=1) = 0.5\`
 + In **either** case, \`P((D vec r)_i = 0) <= 0.5\`
 
