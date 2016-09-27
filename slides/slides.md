@@ -238,11 +238,11 @@ for i = floor( length(A)/2 ) to 1:
 
 ---
 ## Quicksort
-+ **Divide**: partition *A[ p .. r ]* such that:
-  + max( *A[ p .. q-1 ]* ) &le; *A[ q ]* &le; min( *A[ q+1 .. r ]* )
++ **Divide**: partition *A[ lo .. hi ]* such that:
+  + max( *A[ lo .. piv-1 ]* ) &le; *A[ piv ]* &le; min( *A[ piv+1 .. hi ]* )
   + "*magic sauce*" is in this step
 + **Conquer**: recurse on each part:
-  + *quicksort(A, p, q-1)* and *quicksort(A, q+1, r)*
+  + *quicksort(A, lo, piv-1)* and *quicksort(A, piv+1, hi)*
   + No **combine** / merge step needed
 + **In-place** sort (only uses swaps) (unlike *merge sort*)
 + **Worst** case still \`Theta(n^2)\`, but
