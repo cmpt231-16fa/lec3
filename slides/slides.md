@@ -267,11 +267,11 @@ def partition( A, lo, hi ):
     if A[ cur ] <= piv:             # Send small items away
       swap( A[ split ], A[ cur ] )
       split++
-  swap( A[ split ], A[ piv ] )      # Put pivot in its place
+  swap( A[ split ], A[ hi ] )       # Put pivot in its place
   return split
 ```
 
-**Try** it: `[ 5, 2, 7, 4, 8, 1 ]`
+**Try** it: `[ 5, 2, 7, 1, 8, 4 ]`
 
 ---
 ## Quicksort: complexity
