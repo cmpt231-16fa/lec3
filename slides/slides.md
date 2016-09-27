@@ -413,6 +413,7 @@ def rand_partition( A, lo, hi ):
 ---
 ## Frievald false-positives
 + Let *D* = *AB - C*: by assumption, *D* &ne; 0
-  + Let *(i,j)* be indices of a nonzero element \`D_(ij)\`.
-  + &rArr; Want to show *P(Dr == 0) &le; 0.50*
-+ *Dr* is 0 if all elements are 0, so \`P(Dr = 0) <= P((Dr)_i = 0)\`
+  + Let *(i,j)* be indices of a **nonzero** element \`D_(ij)\`.
+  + &rArr; Want to show \`P(D vec r = 0) <= 0.50\`
++ \`D vec r\` is 0 if all its elts are 0, so
+  \`P(D vec r = 0) <= P((D vec r)_i = 0)\`
