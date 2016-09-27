@@ -240,7 +240,7 @@ for i = floor( length(A)/2 ) to 1:
 ## Quicksort
 + **Divide**: partition *A[ lo .. hi ]* such that:
   + max( *A[ lo .. piv-1 ]* ) &le; *A[ piv ]* &le; min( *A[ piv+1 .. hi ]* )
-  + "*magic sauce*" is in this step
+  + Not always **balanced**; this is the "*magic sauce*"
 + **Conquer**: recurse on each part:
   + *quicksort(A, lo, piv-1)* and *quicksort(A, piv+1, hi)*
   + No **combine** / merge step needed
@@ -256,7 +256,6 @@ for i = floor( length(A)/2 ) to 1:
 + **Walk** through array from left to right:
   + Throw items **smaller** than pivot to *left* part of array
   + Items **larger** than pivot stay in *right* part of array
-  + Partition is not necessarily **balanced**!
 + Lastly, **swap** pivot in-between two parts
 
 ```
