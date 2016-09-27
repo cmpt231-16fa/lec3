@@ -253,12 +253,11 @@ for i = floor( length(A)/2 ) to 1:
 ---
 ## Partitioning (Lomuto)
 + One option: pick *last* item as the **pivot**
-+ **Walk** through array:
-  + Throw items **smaller** than pivot to *first* part of array
-  + Items **larger** than pivot stay in *last* part of array
++ **Walk** through array from left to right:
+  + Throw items **smaller** than pivot to *left* part of array
+  + Items **larger** than pivot stay in *right* part of array
   + Partition is not necessarily **balanced**!
 + Lastly, **swap** pivot in-between two parts
-+ **Complexity**?
 
 ```
 def partition( A, lo, hi ):
@@ -271,6 +270,8 @@ def partition( A, lo, hi ):
   swap( A[ split ], A[ piv ] )      # Put pivot in its place
   return split
 ```
+
+**Try** it: `[ 5, 2, 7, 4, 8, 1 ]`
 
 ---
 ## Quicksort: complexity
