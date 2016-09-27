@@ -316,9 +316,9 @@ TODO: figure
   + Not same as *average* when distribution is **skewed**
 + **Median** (rank finding) algorithm in *O(n)*: see *ch9*
   + **Partitioning** also takes only *O(n)*, so
-  + **Quicksort** T(n) = *2T(n/2) + O(n)* = *O(n lg n)*!
+  + **Quicksort** T(n) = *2T(n/2) + O(n)* = *O(n lg n)* (always!)
 + But, in practise:
-  + **extra** work for **marginal** improvement in splits
+  + **Extra** work, splits are usually **already** good
   + Benchmarks **slower** than *merge sort*
 
 ---
@@ -354,11 +354,11 @@ def rand_partition( A, lo, hi ):
 ---
 ## R-Quicksort: complexity
 + Assume all items **distinct**
-+ **Name** items according to true order: \`{z\_i}\_(i=1)^n\`
++ Name items according to **true** order: \`{z\_i}\_(i=1)^n\`
 + Analyse complexity by counting **comparisons** performed
   + **Worst** case: compare all pairs \`(z_\i, z\_j): Theta(n^2)\`
 + No comparison can happen **multiple** times, because
-  + Comparisons only done against **pivots**, and
+  + Comparisons are only done against **pivots**, and
   + Each *pivot* is used only **once** and not **revisited**
 + So what is the **probability** of a pair \`(z_\i, z\_j)\` being compared?
 
@@ -420,17 +420,16 @@ def rand_partition( A, lo, hi ):
 
 ---
 ## Frievald: false-positive rate
-+ Let *D* = *AB - C*: by assumption, *D* &ne; 0
-  + Let *(i,j)* be indices of a **nonzero** element \`d\_(ij)\`.
++ Let *D* = *AB - C*: by assumption, *D* &ne; 0, so choose \`d\_(ij)\` &ne; 0
   + &rArr; Want to **show** \`P(D vec r = 0)\` &le; 0.5
-+ \`D vec r\` is 0 iff all its elts are 0, so
++ \`D vec r\` is 0 **iff** all its elts are 0, so
   \`P(D vec r = 0) <= P((D vec r)\_i = 0)\`
 + This is a **dot product**:
   \`(D vec r)\_i = sum\_(k=1)^n d\_(ik)r\_k = d\_(ij)r\_j + y\`
 + **Two** possibilities: if *y = 0*:
-  \`P((D vec r)\_i = 0) = P(d\_(ij)r\_j = 0) = P(r\_j=0) = 0.5\`
+  \`P((D vec r)\_i = 0)\` \`= P(d\_(ij)r\_j = 0)\` \`= P(r\_j=0) = 0.5\`
 + If *y &ne; 0*, then
-  \`P((D vec r)\_i = 0) = P(r\_j=1 and d\_(ij) = -y) <= P(r\_j=1) = 0.5\`
+  \`P((D vec r)\_i = 0)\` \`= P(r\_j=1 and d\_(ij) = -y)\` \`<= P(r\_j=1) = 0.5\`
 + In **either** case, \`P((D vec r)\_i = 0)\` &le; 0.5
 
 ---
