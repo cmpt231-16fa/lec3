@@ -408,13 +408,13 @@ def rand_partition( A, lo, hi ):
   + &rArr; total time still only \`Theta(n^2)\`
 + Example of a **Monte-Carlo** style algorithm
 + If *A &lowast; B = C*, this always returns *True*
-+ If *A &lowast; B &ne; C*, want \`P(A \* (B \* vec r) != C \* vec r\`) > 0.50\`
++ If *A &lowast; B &ne; C*, want \`P(A \* (B \* vec r) != C \* vec r)\` &gt; 0.5
 
 ---
 ## Frievald false-positives
 + Let *D* = *AB - C*: by assumption, *D* &ne; 0
   + Let *(i,j)* be indices of a **nonzero** element \`d\_(ij)\`.
-  + &rArr; Want to **show** \`P(D vec r = 0) <= 0.50\`
+  + &rArr; Want to **show** \`P(D vec r = 0)\` &le; 0.5
 + \`D vec r\` is 0 iff all its elts are 0, so
   \`P(D vec r = 0) <= P((D vec r)\_i = 0)\`
 + This is a **dot product**:
@@ -423,7 +423,7 @@ def rand_partition( A, lo, hi ):
   \`P((D vec r)\_i = 0) = P(d\_(ij)r\_j = 0) = P(r\_j=0) = 0.5\`
 + If *y &ne; 0*, then
   \`P((D vec r)\_i = 0) = P(r\_j=1 and d\_(ij) = -y) <= P(r\_j=1) = 0.5\`
-+ In **either** case, \`P((D vec r)\_i = 0) <= 0.5\`
++ In **either** case, \`P((D vec r)\_i = 0)\` &le; 0.5
 
 ---
 <!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-y4v96Sy2ne4-sunset_hills.jpg" -->
